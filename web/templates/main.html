@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for item in items %}
+                <div class="col">
+                    <div class="card" id="{{ item.id }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <h4 class="card-title pricing-card-title">{{ item.price }}</h4>
+                        </div>
+                        <a class="btn btn-primary" href="/item/{{ item.id }}">View the product</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+<style>
+    .content {
+        padding: 30px;
+    }
+</style>
