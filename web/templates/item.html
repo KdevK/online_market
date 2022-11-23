@@ -1,13 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="content">
-        <div class="card" id="{{ item.id }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">{{ item.description }}</p>
-                <h4 class="card-title pricing-card-title">{{ item.price }}</h4>
-            </div>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        let stripe=Stripe('pk_test_51M6wpLFA3CCuCGOdn60m5ZWelkXKp2RTVfODTflyEk1tVVxkWrzXUPu0CDFko1Y9zA4lxi2PUuREIFe5Dd84PJS800p0CF0SJ7')
+        function getId(url) {
+            fetch(url).then(function (response) {
+                return response.text();
+            }).then(function (data) {
+                console.log(data);
+                stripe.redirectToCheckout({sessionId:data})
+            })
+        }
+    </script>
+    <div class="card" id="{{ item.id }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+            <h4 class="card-title pricing-card-title">{{ item.price }}</h4>
+            <button class="btn btn-primary" onclick="getId('/buy/{{ item.id }}')">Purchase</button>
         </div>
     </div>
 {% endblock %}
