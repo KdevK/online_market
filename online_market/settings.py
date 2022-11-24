@@ -79,14 +79,21 @@ WSGI_APPLICATION = 'online_market.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+DATABASE_URL = os.environ.get("DATABASE_URL").split("://")[1]
+HEROKU_BD_USER = DATABASE_URL.split(":")[0]
+HEROKU_BD_PASSWORD = DATABASE_URL.split(":")[1].split("@")[0]
+HEROKU_BD_HOST = DATABASE_URL.split(":")[1].split("@")[1]
+HEROKU_BD_PORT = DATABASE_URL.split(":")[2].split('/')[0]
+HEROKU_BD_NAME = DATABASE_URL.split(":")[2].split('/')[1]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'NAME': HEROKU_BD_NAME,
+        'USER': HEROKU_BD_USER,
+        'PASSWORD': HEROKU_BD_PASSWORD,
+        'HOST': HEROKU_BD_HOST,
+        'PORT': HEROKU_BD_PORT,
     }
 }
 
