@@ -5,8 +5,8 @@
 - `python -m venv .venv` - создать виртуальное окружение
 - `poetry shell` - войти в виртуальное окружение
 - `poetry install` - установить зависимости
-- `python src/manage.py migrate` - применить миграции к базе данных
-- `python src/manage.py runserver` - запуск сервера для разработки
+- `python manage.py migrate` - применить миграции к базе данных
+- `python manage.py runserver` - запуск сервера для разработки
 
 ## Административная панель с возможностью управления моделью
 `Логин:` admin
